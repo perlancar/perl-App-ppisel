@@ -1,0 +1,59 @@
+#!perl
+
+# DATE
+# VERSION
+
+use 5.010001;
+use strict;
+use warnings;
+
+use Perinci::CmdLine::Any;
+
+Perinci::CmdLine::Any->new(
+    url => '/App/ppisel/ppisel',
+)->run;
+
+# ABSTRACT:
+# PODNAME:
+
+=head1 SYNOPSIS
+
+To print all 'print' statements:
+
+ % ppisel script.pl '.Statement:has(.Token::Word[content="print"])'
+
+To print the first comment:
+
+ % ppisel script.pl 'Comment:first'
+
+To dump PPI document tree (C<--root> select the root node, C<--dump> dumps the
+content):
+
+ % ppisel script.pl --root --dump
+
+
+=head1 DESCRIPTION
+
+This utility uses CSel to select against a tree of L<PPI::Element> nodes,
+constructed by L<PPI> from a Perl source code.
+
+About the tree: the root node is PPI::Document object, which is a subclass of
+PPI::Element. The other nodes are also subclasses of PPI::Element. This utility
+allows you to omit the C<PPI::Token::> or C<PPI::> prefix, so to select a word
+token can use:
+
+ .Token::Word
+
+or just:
+
+ .Word
+
+
+=head1 SEE ALSO
+
+L<Data::CSel>
+
+L<PPI>
+
+Other utilities that use CSel against various data: L<ddsel>, L<jsonsel>,
+L<orgsel>, L<podsel>, L<htmlsel>, L<yamlsel>.
