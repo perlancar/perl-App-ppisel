@@ -2,3 +2,4 @@ App-ppisel-*
 .build
 *~
 nytprof*
+.DS_Store
